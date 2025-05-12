@@ -1,0 +1,825 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tejas Shinde - Data Engineer Portfolio</title>
+    <style>
+        :root {
+            --blue: #2c3e50;
+            --yellow: #f1c40f;
+            --red: #e74c3c;
+            --green: #27ae60;
+            --light-blue: #3498db;
+            --dark-blue: #1a252f;
+            --light-gray: #f8f9fa;
+            --text-dark: #2c3e50;
+            --text-light: #ecf0f1;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background-color: var(--light-gray);
+            color: var(--text-dark);
+            line-height: 1.6;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        header {
+            background-color: var(--blue);
+            color: var(--text-light);
+            padding: 20px 0;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+        
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            font-size: 24px;
+            font-weight: bold;
+            color: var(--yellow);
+        }
+        
+        .nav-links {
+            display: flex;
+            list-style: none;
+        }
+        
+        .nav-links li {
+            margin-left: 30px;
+        }
+        
+        .nav-links a {
+            color: var(--text-light);
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+        
+        .nav-links a:hover {
+            color: var(--yellow);
+        }
+        
+        #hero {
+            background: linear-gradient(135deg, var(--blue) 0%, var(--light-blue) 100%);
+            color: var(--text-light);
+            padding: 180px 0 100px;
+            text-align: center;
+        }
+        
+        .hero-content h1 {
+            font-size: 48px;
+            margin-bottom: 20px;
+            font-weight: 700;
+        }
+        
+        .highlight {
+            color: var(--yellow);
+        }
+        
+        .hero-content p {
+            font-size: 20px;
+            max-width: 700px;
+            margin: 0 auto 30px;
+        }
+        
+        .btn {
+            display: inline-block;
+            background-color: var(--yellow);
+            color: var(--text-dark);
+            padding: 12px 30px;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s;
+            margin: 5px;
+        }
+        
+        .btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+        }
+        
+        .btn-outline {
+            background-color: transparent;
+            border: 2px solid var(--yellow);
+            color: var(--yellow);
+        }
+        
+        .btn-outline:hover {
+            background-color: var(--yellow);
+            color: var(--text-dark);
+        }
+        
+        section {
+            padding: 80px 0;
+        }
+        
+        .section-title {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+        
+        .section-title h2 {
+            font-size: 36px;
+            display: inline-block;
+            position: relative;
+            margin-bottom: 15px;
+        }
+        
+        .section-title h2::after {
+            content: "";
+            position: absolute;
+            left: 50%;
+            bottom: -10px;
+            transform: translateX(-50%);
+            width: 50px;
+            height: 3px;
+            background-color: var(--yellow);
+        }
+        
+        .about-content {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+        }
+        
+        .about-text {
+            flex: 1;
+            min-width: 300px;
+            padding-right: 30px;
+        }
+        
+        .skills {
+            flex: 1;
+            min-width: 300px;
+        }
+        
+        .skill-category {
+            margin-bottom: 30px;
+        }
+        
+        .skill-category h3 {
+            color: var(--blue);
+            margin-bottom: 15px;
+            font-size: 20px;
+        }
+        
+        .skill-item {
+            background-color: white;
+            padding: 10px 15px;
+            margin: 5px;
+            border-radius: 20px;
+            display: inline-block;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+            font-weight: 500;
+            transition: all 0.3s;
+        }
+        
+        .skill-item:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+        
+        .languages { color: var(--light-blue); }
+        .frameworks { color: var(--green); }
+        .databases { color: var(--red); }
+        .tools { color: var(--yellow); }
+        
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
+            gap: 30px;
+        }
+        
+        .project-card {
+            background-color: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s;
+        }
+        
+        .project-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
+        }
+        
+        .project-image {
+            height: 200px;
+            background-size: cover;
+            background-position: center;
+        }
+        
+        .project-1 {
+            background: linear-gradient(45deg, #1DB954, var(--green));
+        }
+        
+        .project-2 {
+            background: linear-gradient(45deg, var(--light-blue), var(--blue));
+        }
+        
+        .project-info {
+            padding: 25px;
+        }
+        
+        .project-title {
+            font-size: 22px;
+            margin-bottom: 10px;
+            color: var(--blue);
+        }
+        
+        .project-tech {
+            display: flex;
+            flex-wrap: wrap;
+            margin: 15px 0;
+        }
+        
+        .tech-tag {
+            background-color: var(--light-gray);
+            color: var(--blue);
+            font-size: 12px;
+            padding: 5px 10px;
+            border-radius: 15px;
+            margin-right: 5px;
+            margin-bottom: 5px;
+        }
+        
+        .project-links {
+            margin-top: 20px;
+        }
+        
+        .project-links a {
+            color: var(--light-blue);
+            margin-right: 15px;
+            font-weight: 600;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+        
+        .project-links a:hover {
+            color: var(--blue);
+        }
+        
+        .achievements {
+            background-color: var(--blue);
+            color: var(--text-light);
+        }
+        
+        .achievement-item {
+            background-color: rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
+            padding: 30px;
+            margin-bottom: 20px;
+            transition: all 0.3s;
+        }
+        
+        .achievement-item:hover {
+            background-color: rgba(255, 255, 255, 0.2);
+            transform: translateY(-5px);
+        }
+        
+        .achievement-title {
+            color: var(--yellow);
+            font-size: 24px;
+            margin-bottom: 10px;
+        }
+        
+        .education-timeline {
+            position: relative;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .education-timeline::after {
+            content: '';
+            position: absolute;
+            width: 3px;
+            background-color: var(--light-blue);
+            top: 0;
+            bottom: 0;
+            left: 50%;
+            margin-left: -1.5px;
+        }
+        
+        .timeline-item {
+            padding: 10px 40px;
+            position: relative;
+            width: 50%;
+            box-sizing: border-box;
+        }
+        
+        .timeline-item::after {
+            content: '';
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            background-color: white;
+            border: 4px solid var(--yellow);
+            border-radius: 50%;
+            top: 15px;
+            z-index: 1;
+        }
+        
+        .left {
+            left: 0;
+        }
+        
+        .right {
+            left: 50%;
+        }
+        
+        .left::after {
+            right: -13px;
+        }
+        
+        .right::after {
+            left: -13px;
+        }
+        
+        .timeline-content {
+            padding: 20px 30px;
+            background-color: white;
+            border-radius: 10px;
+            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+        }
+        
+        .timeline-year {
+            color: var(--light-blue);
+            font-weight: 600;
+        }
+        
+        .timeline-degree {
+            font-size: 18px;
+            font-weight: 600;
+            margin: 10px 0 5px;
+        }
+        
+        .timeline-school {
+            color: var(--text-dark);
+            font-style: italic;
+        }
+        
+        .timeline-grade {
+            margin-top: 10px;
+            background-color: var(--green);
+            color: white;
+            display: inline-block;
+            padding: 3px 10px;
+            border-radius: 15px;
+            font-size: 14px;
+        }
+        
+        #contact {
+            background: linear-gradient(135deg, var(--dark-blue) 0%, var(--blue) 100%);
+            color: var(--text-light);
+        }
+        
+        .contact-content {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+        }
+        
+        .contact-info {
+            flex: 1;
+            min-width: 300px;
+            margin-bottom: 30px;
+        }
+        
+        .contact-item {
+            display: flex;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+        
+        .contact-icon {
+            width: 50px;
+            height: 50px;
+            background-color: var(--yellow);
+            color: var(--text-dark);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 15px;
+            font-size: 20px;
+        }
+        
+        .contact-text h3 {
+            font-size: 18px;
+            margin-bottom: 5px;
+        }
+        
+        .contact-text p, .contact-text a {
+            color: var(--text-light);
+            text-decoration: none;
+        }
+        
+        .contact-form {
+            flex: 1;
+            min-width: 300px;
+        }
+        
+        .form-group {
+            margin-bottom: 20px;
+        }
+        
+        input, textarea {
+            width: 100%;
+            padding: 12px 15px;
+            border: none;
+            border-radius: 5px;
+            background-color: rgba(255, 255, 255, 0.1);
+            color: var(--text-light);
+            font-size: 16px;
+        }
+        
+        input:focus, textarea:focus {
+            outline: none;
+            background-color: rgba(255, 255, 255, 0.2);
+        }
+        
+        textarea {
+            height: 150px;
+            resize: vertical;
+        }
+        
+        .submit-btn {
+            background-color: var(--yellow);
+            color: var(--text-dark);
+            padding: 12px 30px;
+            border: none;
+            border-radius: 30px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        
+        .submit-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+        }
+        
+        footer {
+            background-color: var(--dark-blue);
+            color: var(--text-light);
+            text-align: center;
+            padding: 20px 0;
+        }
+        
+        .social-links {
+            margin-bottom: 15px;
+        }
+        
+        .social-links a {
+            display: inline-block;
+            width: 40px;
+            height: 40px;
+            background-color: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            margin: 0 5px;
+            color: var(--text-light);
+            text-decoration: none;
+            line-height: 40px;
+            transition: all 0.3s;
+        }
+        
+        .social-links a:hover {
+            background-color: var(--yellow);
+            color: var(--text-dark);
+            transform: translateY(-3px);
+        }
+        
+        /* Responsive */
+        @media screen and (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+            
+            .hero-content h1 {
+                font-size: 36px;
+            }
+            
+            .education-timeline::after {
+                left: 31px;
+            }
+            
+            .timeline-item {
+                width: 100%;
+                padding-left: 70px;
+                padding-right: 25px;
+            }
+            
+            .timeline-item::after {
+                left: 18px;
+            }
+            
+            .right {
+                left: 0;
+            }
+        }
+        
+        @media screen and (max-width: 480px) {
+            .hero-content h1 {
+                font-size: 30px;
+            }
+            
+            .btn {
+                padding: 10px 20px;
+                font-size: 14px;
+            }
+            
+            .section-title h2 {
+                font-size: 28px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <nav>
+                <div class="logo">TS</div>
+                <ul class="nav-links">
+                    <li><a href="#hero">Home</a></li>
+                    <li><a href="#about">About</a></li>
+                    <li><a href="#projects">Projects</a></li>
+                    <li><a href="#achievements">Achievements</a></li>
+                    <li><a href="#education">Education</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <section id="hero">
+        <div class="container">
+            <div class="hero-content">
+                <h1>Tejas Shinde</h1>
+                <p>Aspiring <span class="highlight">Data Engineer</span> specializing in scalable data pipelines and analytics solutions</p>
+                <div class="hero-buttons">
+                    <a href="#projects" class="btn">View Projects</a>
+                    <a href="#contact" class="btn btn-outline">Contact Me</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="about">
+        <div class="container">
+            <div class="section-title">
+                <h2>About Me</h2>
+            </div>
+            <div class="about-content">
+                <div class="about-text">
+                    <p>Computer Science graduate specializing in data management systems. Developed scalable data pipeline projects processing 10,000+ records efficiently. Knowledgeable in Python, SQL, and basic cloud technologies. Passionate about building efficient data solutions and ready to contribute to real-world engineering challenges.</p>
+                    <p>I'm seeking an entry-level Data Engineering role to leverage my skills in PySpark, SQL, and Airflow to design scalable pipelines and deliver business-impacting analytics.</p>
+                </div>
+                <div class="skills">
+                    <div class="skill-category">
+                        <h3>Languages</h3>
+                        <div class="skill-item languages">Python</div>
+                        <div class="skill-item languages">SQL</div>
+                        <div class="skill-item languages">Shell Scripting</div>
+                    </div>
+                    <div class="skill-category">
+                        <h3>Frameworks</h3>
+                        <div class="skill-item frameworks">Apache Spark</div>
+                        <div class="skill-item frameworks">Hadoop</div>
+                    </div>
+                    <div class="skill-category">
+                        <h3>Databases</h3>
+                        <div class="skill-item databases">PostgreSQL</div>
+                        <div class="skill-item databases">MySQL</div>
+                    </div>
+                    <div class="skill-category">
+                        <h3>Tools & Techniques</h3>
+                        <div class="skill-item tools">Apache Airflow</div>
+                        <div class="skill-item tools">Power BI</div>
+                        <div class="skill-item tools">Looker</div>
+                        <div class="skill-item tools">ETL</div>
+                        <div class="skill-item tools">Data Modeling</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="projects">
+        <div class="container">
+            <div class="section-title">
+                <h2>My Projects</h2>
+            </div>
+            <div class="projects-grid">
+                <div class="project-card">
+                    <div class="project-image project-1"></div>
+                    <div class="project-info">
+                        <h3 class="project-title">Spotify Music Analytics</h3>
+                        <p>End-to-end ETL pipeline processing 500,000+ Spotify tracks with PySpark and visualizing insights with Power BI</p>
+                        <div class="project-tech">
+                            <span class="tech-tag">PySpark</span>
+                            <span class="tech-tag">Spotify API</span>
+                            <span class="tech-tag">SQL</span>
+                            <span class="tech-tag">Power BI</span>
+                        </div>
+                        <ul>
+                            <li>Improved processing throughput by 35%</li>
+                            <li>Enhanced data integrity by 20%</li>
+                            <li>Reduced manual report generation time by 60%</li>
+                        </ul>
+                        <div class="project-links">
+                            <a href="https://github.com/TejasShinde123/Spotify-API-ETL-Project-Beginner-Friendly" target="_blank">GitHub</a>
+                            <a href="#">Demo</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="project-card">
+                    <div class="project-image project-2"></div>
+                    <div class="project-info">
+                        <h3 class="project-title">Traffic Analytics Solution</h3>
+                        <p>Scalable ETL and dashboarding solution processing 1.2M+ traffic records across 35+ regions with Apache Airflow and PySpark</p>
+                        <div class="project-tech">
+                            <span class="tech-tag">Apache Airflow</span>
+                            <span class="tech-tag">PySpark</span>
+                            <span class="tech-tag">Power BI</span>
+                            <span class="tech-tag">Docker</span>
+                        </div>
+                        <ul>
+                            <li>Achieved 99.9% uptime for daily data refreshes</li>
+                            <li>Reduced query latency by 40%</li>
+                            <li>Decreased data corruption incidents by 90%</li>
+                        </ul>
+                        <div class="project-links">
+                            <a href="https://github.com/TejasShinde123/Scalable-ETL-and-Dashboarding-Solution-for-Traffic-Analytics/tree/main" target="_blank">GitHub</a>
+                            <a href="#">Demo</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="achievements" class="achievements">
+        <div class="container">
+            <div class="section-title">
+                <h2>Achievements</h2>
+            </div>
+            <div class="achievement-item">
+                <h3 class="achievement-title">Maha-IT Genius District Champion</h3>
+                <p><strong>Recognition:</strong> 2nd Rank Winner</p>
+                <p><strong>Achievement:</strong> Demonstrated exceptional technological problem-solving capabilities</p>
+                <p><strong>Impact:</strong> Recognized among top technical innovators in district-level competition</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="education">
+        <div class="container">
+            <div class="section-title">
+                <h2>Education</h2>
+            </div>
+            <div class="education-timeline">
+                <div class="timeline-item left">
+                    <div class="timeline-content">
+                        <span class="timeline-year">Sep 2022 - Apr 2025</span>
+                        <h3 class="timeline-degree">Bachelor of Computer Applications (BCA)</h3>
+                        <p class="timeline-school">BALBHIM COLLEGE, BEED, Maharashtra</p>
+                        <span class="timeline-grade">CGPA: 8.4</span>
+                    </div>
+                </div>
+                <div class="timeline-item right">
+                    <div class="timeline-content">
+                        <span class="timeline-year">Sep 2020 - Apr 2022</span>
+                        <h3 class="timeline-degree">12th Grade (Science - PCMB)</h3>
+                        <p class="timeline-school">RAJIV GANDHI COLLEGE, BULDHANA, Maharashtra</p>
+                        <span class="timeline-grade">Percentage: 88.33%</span>
+                    </div>
+                </div>
+                <div class="timeline-item left">
+                    <div class="timeline-content">
+                        <span class="timeline-year">Completed</span>
+                        <h3 class="timeline-degree">10th CLASS</h3>
+                        <p class="timeline-school">SAWARKAR HIGH SCHOOL, BEED</p>
+                        <span class="timeline-grade">Percentage: 98.25%</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="certifications">
+        <div class="container">
+            <div class="section-title">
+                <h2>Certifications</h2>
+            </div>
+            <div class="projects-grid">
+                <div class="project-card">
+                    <div class="project-info">
+                        <h3 class="project-title">Oracle - OCI Al Foundations Associate</h3>
+                    </div>
+                </div>
+                <div class="project-card">
+                    <div class="project-info">
+                        <h3 class="project-title">HP-Life - AI For Beginners</h3>
+                    </div>
+                </div>
+                <div class="project-card">
+                    <div class="project-info">
+                        <h3 class="project-title">Google - Introduction to Generative AI & LLMs</h3>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="contact">
+        <div class="container">
+            <div class="section-title">
+                <h2>Contact Me</h2>
+            </div>
+            <div class="contact-content">
+                <div class="contact-info">
+                    <div class="contact-item">
+                        <div class="contact-icon">📧</div>
+                        <div class="contact-text">
+                            <h3>Email</h3>
+                            <a href="mailto:workemailtejas@gmail.com">workemailtejas@gmail.com</a>
+                        </div>
+                    </div>
+                    <div class="contact-item">
+                        <div class="contact-icon">📱</div>
+                        <div class="contact-text">
+                            <h3>Phone</h3>
+                            <p>+919750195161</p>
+                        </div>
+                    </div>
+                    <div class="contact-item">
+                        <div class="contact-icon">📍</div>
+                        <div class="contact-text">
+                            <h3>Location</h3>
+                            <p>Maharashtra, India</p>
+                        </div>
+                    </div>
+                    <div class="contact-item">
+                        <div class="contact-icon">🔗</div>
+                        <div class="contact-text">
+                            <h3>LinkedIn</h3>
+                            <a href="https://www.linkedin.com/in/tejas-shinde-31720724b/" target="_blank">tejas-shinde-31720724b</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="contact-form">
+                    <form>
+                        <div class="form-group">
+                            <input type="text" placeholder="Your Name" required>
+                        </div>
+                        <div class="form-group">
+                            <input type="email" placeholder="Your Email" required>
+                        </div>
+                        <div class="form-group">
+                            <input type="text" placeholder="Subject">
+                        </div>
+                        <div class="form-group">
+                            <textarea placeholder="Your Message" required></textarea>
+                        </div>
+                        <button type="submit" class="submit-btn">Send Message</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <div class="social-links">
+                <a href="#" title="LinkedIn">in</a>
+                <a href="#" title="GitHub">gh</a>
+                <a href="#" title="Twitter">tw</a>
+            </div>
+            <p>&copy; 2025 Tejas Shinde. All rights reserved.</p>
+        </div>
+    </footer>
+</body>
+</html>
